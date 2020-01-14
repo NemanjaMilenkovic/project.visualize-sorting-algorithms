@@ -6,17 +6,48 @@
     <title>Code Chrysalis</title>
   </head>
 
+  <div id="whiteBar">
+    <h1>[3, 2, 5, 1, 8, 6, 7, 4]</h1>
+  </div>
+
   <body>
     <div id="title"></div>
-    <form>
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Engineering?" />
-      <input type="submit" />
-    </form>
-    <!--
-    Where is this public/bundle.js file coming from?
-    It comes from our trusty friend, webpack.
-  -->
+
+    <div id="outwrap">
+      <div id="bigwrap"></div>
+    </div>
+
+    <div id="arrowContainer">
+      <p><i class="arrow left" id="left"></i></p>
+      <p><i class="arrow right" id="right"></i></p>
+    </div>
+    <div id="buttonContainer">
+      <button
+        onclick="showArr(initialArr)"
+        id="feed-btn"
+        class="btn"
+        value="submit"
+      >
+        START/RESET
+      </button>
+    </div>
+
     <script type="text/javascript" src="/public/bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+    <script>
+      function showArr(arr) {
+          var element = document.getElementById("bigwrap");
+          element.parentNode.removeChild(element);
+          var wrap = document.createElement("DIV");
+          wrap.setAttribute("id", "bigwrap");
+          document.getElementById("outwrap").appendChild(wrap);
+          for (let num of arr) {
+            var node = document.createElement("DIV");
+            node.setAttribute("id", "box");
+            var textNode = document.createTextNode(num);
+            node.appendChild(textNode);
+            document.getElementById("bigwrap").appendChild(node);
+          }
+    </script>
   </body>
 </html>
